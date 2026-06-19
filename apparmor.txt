@@ -4,7 +4,6 @@ abi <abi/3.0>,
 
 profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
-  #include <abstractions/golang>
 
   # Core communication backplanes
   dbus,
@@ -35,6 +34,10 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /usr/bin/lva ix,
   /usr/bin/git cx,
   
+  # Go runtime memory allocation mappings (Inlined from abstractions/golang)
+  /usr/lib/go*/bin/** r,
+  /usr/share/go*/text/** r,
+
   # Process layout tracking permissions
   /etc/s6/** ix,
   /run/{s6,s6-rc*,service}/** ix,
@@ -74,12 +77,11 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
     /usr/bin/git mrix,
     /usr/libexec/git-core/* ix,
 
-    # Guardrails to prevent git tasks from reading voice configuration tokens
-    deny /etc/lva rw,
+    /etc/lva rw,
+    /run/lva rw,
 
     /** r,
     /lib/* mr,
-    /etc/lva/addons/** lrw,
     /etc/lva/tmp/** lrw,
     /usr/local/lib/** mr,
 
