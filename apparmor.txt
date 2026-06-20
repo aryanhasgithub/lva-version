@@ -1,7 +1,5 @@
 abi <abi/3.0>,
-
 #include <tunables/global>
-
 profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
@@ -33,12 +31,14 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /sbin/udevd Ux,
   /usr/bin/lva ix,
   /usr/bin/git cx,
-  /package/** ix,
-  /command/** ix,
-  
+
   # Go runtime memory allocation mappings (Inlined from abstractions/golang)
   /usr/lib/go*/bin/** r,
   /usr/share/go*/text/** r,
+
+  # s6-overlay installed binaries (suexec, s6-svscan, s6-supervise, etc.)
+  /package/** ix,
+  /command/** ix,
 
   # Process layout tracking permissions
   /etc/s6/** ix,
@@ -47,6 +47,18 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /etc/cont-init.d/** rwix,
   /etc/cont-finish.d/** rwix,
 
+  # s6-overlay runtime directories (mkdir/write, not just exec)
+  /run/s6/ rw,
+  /run/s6/** rw,
+  /run/s6-rc/ rw,
+  /run/s6-rc/** rw,
+  /run/s6-rc*/ rw,
+  /run/s6-rc*/** rw,
+  /run/service/ rw,
+  /run/service/** rw,
+  /run/uncaught-logs/ rw,
+  /run/uncaught-logs/** rw,
+
   # Prevent profile exploits from modifying vital kernel nodes
   deny /proc/** wl,
   deny /sys/** wl,
@@ -54,8 +66,8 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   # Global file read accessibility rules
   / r,
   /** r,
-  
-  # Dynamic variable paths required for your voice assistant 
+
+  # Dynamic variable paths 
   /tmp/** rwk,
   /etc/lva/** rw,
   /run/lva/{,**} rwk,
@@ -69,24 +81,18 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   # Locked sub-profile for git pull updates
   profile /usr/bin/git flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
-
     network,
     deny network raw,
-
     signal (receive) set=(term),
-
     /bin/busybox ix,
     /usr/bin/git mrix,
     /usr/libexec/git-core/* ix,
-
     /etc/lva rw,
     /run/lva rw,
-
     /** r,
     /lib/* mr,
     /etc/lva/tmp/** lrw,
     /usr/local/lib/** mr,
-
     capability dac_override,
   }
 }
