@@ -3,10 +3,8 @@ abi <abi/3.0>,
 profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
-  # Core communication backplanes
   dbus,
 
-  # Low-latency networking for local voice streaming and mDNS
   network unix stream,
   network inet stream,
   network inet6 stream,
@@ -14,17 +12,14 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   network inet6 dgram,
   network netlink raw,
 
-  # Container tracking signal mechanics
   signal (send) set=(kill,term,int,hup,cont),
 
-  # Root privileges needed to manage network interfaces and file permissions
   capability net_admin,
   capability net_bind_service,
   capability dac_read_search,
   capability dac_override,
   capability chown,
 
-  # Allowed execution binaries on the host/container
   /bin/** ix,
   /usr/bin/** ix,
   /bin/udevadm Ux,
@@ -32,28 +27,24 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /usr/bin/lva ix,
   /usr/bin/git cx,
 
-  # Go runtime memory allocation mappings (Inlined from abstractions/golang)
   /usr/lib/go*/bin/** r,
   /usr/share/go*/text/** r,
 
-  # s6-overlay installed binaries (suexec, s6-svscan, s6-supervise, etc.)
   /package/** ix,
   /command/** ix,
 
-  # Process layout tracking permissions
   /etc/s6/** ix,
   /run/{s6,s6-rc*,service}/** ix,
   /etc/services.d/** rwix,
   /etc/cont-init.d/** rwix,
   /etc/cont-finish.d/** rwix,
 
-  # s6-overlay runtime directories (mkdir/write, not just exec)
   /run/s6/ rw,
-  /run/s6/** rw,
+  /run/s6/** rwk,
   /run/s6-rc/ rw,
-  /run/s6-rc/** rw,
+  /run/s6-rc/** rwk,
   /run/s6-rc*/ rw,
-  /run/s6-rc*/** rw,
+  /run/s6-rc*/** rwk,
   /run/service/ rw,
   /run/service/** rwk,
   /run/service/.s6-svscan/ rwk,
@@ -61,21 +52,16 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /run/uncaught-logs/ rw,
   /run/uncaught-logs/** rw,
 
-  # s6-linux-init needs create/chmod/chown rights directly on /run and its
-  # own container marker directory
   /run/ w,
   /run/s6-linux-init-container*/ rw,
   /run/s6-linux-init-container*/** rwk,
 
-  # Prevent profile exploits from modifying vital kernel nodes
   deny /proc/** wl,
   deny /sys/** wl,
 
-  # Global file read accessibility rules
   / r,
   /** r,
 
-  # Dynamic variable paths required for your voice assistant
   /tmp/** rwk,
   /etc/lva/** rw,
   /run/lva/{,**} rwk,
@@ -83,10 +69,8 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /etc/resolv.conf rw,
   /run/docker.sock rw,
 
-  # Core dynamic engine shared library lookups
   /usr/local/lib/** mr,
 
-  # Locked sub-profile for git pull updates
   profile /usr/bin/git flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     network,
