@@ -41,6 +41,8 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
 
   /run/s6/ rw,
   /run/s6/** rwk,
+  /run/s6-rc rwlk,
+  /run/s6-rc-init* rwlk,
   /run/s6-rc/ rw,
   /run/s6-rc/** rwk,
   /run/s6-rc*/ rw,
