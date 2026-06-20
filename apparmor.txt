@@ -22,6 +22,7 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
 
   /bin/** ix,
   /usr/bin/** ix,
+  /usr/lib/bashio/** ix,
   /bin/udevadm Ux,
   /sbin/udevd Ux,
   /usr/bin/lva ix,
