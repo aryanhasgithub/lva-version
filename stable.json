@@ -2,7 +2,7 @@
   "lva": "1.1.10",
   "lva-audio": "0.1.0",
   "lva-portal": "0.1.0",
-  "lva-supervisor": "0.1.0",
+  "lva-supervisor": "0.3.0",
   "lva-os": {
     "rpi4": "0.1.0",
     "x86_64": "0.1.0"
