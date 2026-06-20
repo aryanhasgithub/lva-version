@@ -55,9 +55,17 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /run/s6-rc*/ rw,
   /run/s6-rc*/** rw,
   /run/service/ rw,
-  /run/service/** rw,
+  /run/service/** rwk,
+  /run/service/.s6-svscan/ rwk,
+  /run/service/.s6-svscan/** rwk,
   /run/uncaught-logs/ rw,
   /run/uncaught-logs/** rw,
+
+  # s6-linux-init needs create/chmod/chown rights directly on /run and its
+  # own container marker directory
+  /run/ w,
+  /run/s6-linux-init-container*/ rw,
+  /run/s6-linux-init-container*/** rwk,
 
   # Prevent profile exploits from modifying vital kernel nodes
   deny /proc/** wl,
@@ -67,7 +75,7 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   / r,
   /** r,
 
-  # Dynamic variable paths 
+  # Dynamic variable paths required for your voice assistant
   /tmp/** rwk,
   /etc/lva/** rw,
   /run/lva/{,**} rwk,
