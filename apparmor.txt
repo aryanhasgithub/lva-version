@@ -33,6 +33,8 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /sbin/udevd Ux,
   /usr/bin/lva ix,
   /usr/bin/git cx,
+  /package/** ix,
+  /command/** ix,
   
   # Go runtime memory allocation mappings (Inlined from abstractions/golang)
   /usr/lib/go*/bin/** r,
