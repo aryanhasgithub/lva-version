@@ -2,24 +2,19 @@ abi <abi/3.0>,
 #include <tunables/global>
 profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
-
   dbus,
-
   network unix stream,
   network inet stream,
   network inet6 stream,
   network inet dgram,
   network inet6 dgram,
   network netlink raw,
-
   signal (send) set=(kill,term,int,hup,cont),
-
   capability net_admin,
   capability net_bind_service,
   capability dac_read_search,
   capability dac_override,
   capability chown,
-
   /bin/** ix,
   /usr/bin/** ix,
   /usr/local/bin/** ix,
@@ -28,19 +23,15 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /sbin/udevd Ux,
   /usr/bin/lva ix,
   /usr/bin/git cx,
-
   /usr/lib/go*/bin/** r,
   /usr/share/go*/text/** r,
-
   /package/** ix,
   /command/** ix,
-
   /etc/s6/** ix,
   /run/{s6,s6-rc*,service}/** ix,
   /etc/services.d/** rwix,
   /etc/cont-init.d/** rwix,
   /etc/cont-finish.d/** rwix,
-
   /run/s6/ rw,
   /run/s6/** rwk,
   /run/s6-rc rwlk,
@@ -55,26 +46,21 @@ profile lva-supervisor flags=(attach_disconnected,mediate_deleted) {
   /run/service/.s6-svscan/** rwk,
   /run/uncaught-logs/ rw,
   /run/uncaught-logs/** rw,
-
   /run/ w,
   /run/s6-linux-init-container*/ rw,
   /run/s6-linux-init-container*/** rwk,
-
   deny /proc/** wl,
   deny /sys/** wl,
-
   / r,
   /** r,
-
   /tmp/** rwk,
   /etc/lva/** rw,
+  /data/{,**} rw,
   /run/lva/{,**} rwk,
   /dev/tty rw,
   /etc/resolv.conf rw,
   /run/docker.sock rw,
-
   /usr/local/lib/** mr,
-
   profile /usr/bin/git flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     network,
