@@ -9,7 +9,7 @@
     "rpi3-64": "0.1",
     "rpi4-64": "0.1",
     "rpi5-64": "0.1",
-    "generic-x86-64": "0.2",
+    "generic-x86-64": "0.1",
     "generic-aarch64": "0.1"
   },
   "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb"
