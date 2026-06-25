@@ -1,7 +1,7 @@
 {
   "lva": "1.1.10",
   "lva-audio": "0.1.0",
-  "lva-portal": "0.9.0",
+  "lva-portal": "0.1.0",
   "lva-supervisor": "0.5.0",
   "lva-cli": "0.9.0",
   "lva-os": {
@@ -9,7 +9,7 @@
     "rpi3-64": "0.1",
     "rpi4-64": "0.1",
     "rpi5-64": "0.1",
-    "generic-x86-64": "0.1",
+    "generic-x86-64": "0.2",
     "generic-aarch64": "0.1"
   },
   "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb"
