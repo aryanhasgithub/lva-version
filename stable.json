@@ -1,7 +1,7 @@
 {
   "lva": "1.1.12",
   "lva-audio": "0.1.0",
-  "lva-portal": "0.3.0",
+  "lva-portal": "0.5.0",
   "lva-supervisor": "1.1.0",
   "lva-cli": "0.1.0",
   "lva-os": {
