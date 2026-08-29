@@ -12,5 +12,6 @@
     "generic-x86-64": "0.1",
     "generic-aarch64": "0.1"
   },
-  "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb"
+  "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb",
+  "os": "0.1"
 }
