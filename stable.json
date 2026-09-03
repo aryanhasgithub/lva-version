@@ -2,7 +2,7 @@
   "lva": { "version": "1.1.12", "requires": {} },
   "lva-audio": { "version": "0.1.0", "requires": {} },
   "lva-portal": { "version": "1.1.0", "requires": { "lva-supervisor": "1.9.0" } },
-  "lva-supervisor": { "version": "1.9.0", "requires": {} },
+  "lva-supervisor": { "version": "2.0.0", "requires": {} },
   "lva-cli": { "version": "0.1.0", "requires": {} },
   "lva-os": {
     "rpi0-2w-64": "0.1",
