@@ -1,7 +1,7 @@
 {
   "lva": { "version": "1.1.12", "requires": {} },
   "lva-audio": { "version": "0.1.0", "requires": {} },
-  "lva-portal": { "version": "0.9.0", "requires": { "lva-supervisor": "1.9.0" } },
+  "lva-portal": { "version": "1.1.0", "requires": { "lva-supervisor": "1.9.0" } },
   "lva-supervisor": { "version": "1.9.0", "requires": {} },
   "lva-cli": { "version": "0.1.0", "requires": {} },
   "lva-os": {
