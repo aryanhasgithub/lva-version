@@ -1,9 +1,26 @@
 {
-  "lva": { "version": "1.1.12", "requires": {} },
-  "lva-audio": { "version": "0.1.0", "requires": {} },
-  "lva-portal": { "version": "1.5.0", "requires": { "lva-supervisor": "2.1.0" } },
-  "lva-supervisor": { "version": "2.1.0", "requires": {} },
-  "lva-cli": { "version": "0.1.0", "requires": {} },
+  "lva": {
+    "version": "1.1.12",
+    "requires": {}
+  },
+  "lva-audio": {
+    "version": "0.1.0",
+    "requires": {}
+  },
+  "lva-portal": {
+    "version": "1.5.0",
+    "requires": {
+      "lva-supervisor": "2.1.0"
+    }
+  },
+  "lva-supervisor": {
+    "version": "2.1.0",
+    "requires": {}
+  },
+  "lva-cli": {
+    "version": "0.1.0",
+    "requires": {}
+  },
   "lva-os": {
     "rpi0-2w-64": "0.1",
     "rpi3-64": "0.1",
@@ -13,5 +30,5 @@
     "generic-aarch64": "0.1"
   },
   "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb",
-  "os": "0.1"
+  "os": "0.3"
 }
