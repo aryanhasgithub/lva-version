@@ -22,12 +22,12 @@
     "requires": {}
   },
   "lva-os": {
-    "rpi0-2w-64": "0.1",
-    "rpi3-64": "0.1",
-    "rpi4-64": "0.1",
-    "rpi5-64": "0.1",
-    "generic-x86-64": "0.1",
-    "generic-aarch64": "0.1"
+    "rpi0-2w-64": "0.3",
+    "rpi3-64": "0.3",
+    "rpi4-64": "0.3",
+    "rpi5-64": "0.3",
+    "generic-x86-64": "0.3",
+    "generic-aarch64": "0.3"
   },
   "ota": "https://github.com/aryanhasgithub/lva-os/releases/download/{version}/lva-os_{board}-{version}.raucb",
   "os": "0.3"
