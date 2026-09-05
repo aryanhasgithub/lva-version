@@ -13,7 +13,9 @@
       "lva-supervisor": "2.1.0"
     }
   },
-  "lva-supervisor": "2.1.0",
+  "lva-supervisor": {
+    "version": "2.3.0",
+  },
   "lva-cli": {
     "version": "0.1.0",
     "requires": {}
